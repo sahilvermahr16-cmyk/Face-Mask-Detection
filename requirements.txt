@@ -1,5 +1,6 @@
 streamlit
 streamlit-webrtc
+tornado
 opencv-python-headless
 tensorflow-cpu
 numpy<2.0.0

@@ -1,5 +1,5 @@
 streamlit
 streamlit-webrtc
 opencv-python-headless
-tensorflow-cpu==2.15.0
+tensorflow-cpu
 numpy<2.0.0

@@ -17,24 +17,33 @@ class VideoTransformer(VideoTransformerBase):
         # Convert frame to numpy array
         img = frame.to_ndarray(format="bgr24")
 
-        # Preprocessing (Model input size 224x224)
+        # 1. Preprocessing
         processed = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         processed = cv2.resize(processed, (224, 224))
         processed = np.expand_dims(processed, axis=0)
         processed = preprocess_input(processed)
 
-        # Prediction
+        # 2. Prediction
         pred = model.predict(processed, verbose=0)[0][0]
 
-        # Mapping: pred < 0.5 is Mask, else No Mask
-        label, color = ("MASK 😷", (0, 255, 0)) if pred < 0.5 else ("NO MASK ❌", (0, 0, 255))
+        # 3. Label and Confidence Logic
+        if pred < 0.5:
+            label = "MASK 😷"
+            # Confidence is how close it is to 0
+            confidence = (1 - pred) * 100
+            color = (0, 255, 0) # Green
+        else:
+            label = "NO MASK ❌"
+            # Confidence is how close it is to 1
+            confidence = pred * 100
+            color = (0, 0, 255) # Red
 
-        # Text display on screen
-        cv2.putText(img, f"{label} ({pred:.2f})", (20, 50),
+        # 4. Text display on screen (Showing Percentage instead of raw float)
+        display_text = f"{label} {confidence:.2f}%"
+        cv2.putText(img, display_text, (20, 50),
                     cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
 
         return img
-
 # 2. Streamlit UI
 st.title("Face Mask Detection Web App")
 st.write("Click 'Start' to begin webcam detection")

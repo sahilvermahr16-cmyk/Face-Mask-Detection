@@ -28,12 +28,12 @@ class VideoTransformer(VideoTransformerBase):
 
         # 3. Label and Confidence Logic
         if pred < 0.5:
-            label = "MASK 😷"
+            label = "MASK"
             # Confidence is how close it is to 0
             confidence = (1 - pred) * 100
             color = (0, 255, 0) # Green
         else:
-            label = "NO MASK ❌"
+            label = "NO MASK"
             # Confidence is how close it is to 1
             confidence = pred * 100
             color = (0, 0, 255) # Red

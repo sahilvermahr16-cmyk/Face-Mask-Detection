@@ -5,7 +5,19 @@ import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 
-# 1. Load model with caching to prevent reloading
+# --- 1. CSS FIX (Isse video player controls hide ho jayenge) ---
+st.markdown(
+    """
+    <style>
+    video {
+        pointer-events: none; /* Clicking se pause nahi hoga */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# 2. Load model with caching
 @st.cache_resource
 def load_mask_model():
     return load_model("MobileNetV2_mask_model.h5")
@@ -14,37 +26,35 @@ model = load_mask_model()
 
 class VideoTransformer(VideoTransformerBase):
     def transform(self, frame):
-        # Convert frame to numpy array
         img = frame.to_ndarray(format="bgr24")
 
-        # 1. Preprocessing
+        # Preprocessing
         processed = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         processed = cv2.resize(processed, (224, 224))
         processed = np.expand_dims(processed, axis=0)
         processed = preprocess_input(processed)
 
-        # 2. Prediction
+        # Prediction
         pred = model.predict(processed, verbose=0)[0][0]
 
-        # 3. Label and Confidence Logic
+        # Label and Confidence Logic (Emojis removed to fix ???? issue)
         if pred < 0.5:
             label = "MASK"
-            # Confidence is how close it is to 0
             confidence = (1 - pred) * 100
             color = (0, 255, 0) # Green
         else:
             label = "NO MASK"
-            # Confidence is how close it is to 1
             confidence = pred * 100
             color = (0, 0, 255) # Red
 
-        # 4. Text display on screen (Showing Percentage instead of raw float)
+        # Text display
         display_text = f"{label} {confidence:.2f}%"
         cv2.putText(img, display_text, (20, 50),
                     cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
 
         return img
-# 2. Streamlit UI
+
+# 3. Streamlit UI
 st.title("Face Mask Detection Web App")
 st.write("Click 'Start' to begin webcam detection")
 
@@ -54,6 +64,7 @@ webrtc_streamer(
     rtc_configuration={
         "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
     },
-    # Yeh line add karein: Audio capture band karne ke liye
-    media_stream_constraints={"video": True, "audio": False} 
+    # Audio capture band karne ke liye taaki player controls na aayein
+    media_stream_constraints={"video": True, "audio": False},
+    async_processing=True
 )

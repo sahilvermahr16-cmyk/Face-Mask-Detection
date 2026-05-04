@@ -1,6 +1,7 @@
-streamlit
-streamlit-webrtc
-tornado
-opencv-python-headless
-tensorflow-cpu
-numpy<2.0.0
+tensorflow==2.13.0
+streamlit==1.28.0
+streamlit-webrtc==0.47.1
+opencv-python-headless==4.8.1.78
+numpy==1.24.3
+av==10.0.0
+ 

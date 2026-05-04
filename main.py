@@ -57,13 +57,17 @@ class VideoTransformer(VideoTransformerBase):
 
 st.title("Face Mask Detection Web App")
 
+# 3. Streamlit UI
+st.title("Face Mask Detection Web App")
+st.write("Click 'Start' to begin webcam detection")
+
 webrtc_streamer(
     key="mask-detect",
-    mode="sendrecv", # Yeh mode live stream ke liye best hai
+    # Mode wali line hata di hai taaki error na aaye
     video_processor_factory=VideoTransformer,
     rtc_configuration={
         "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
     },
-    media_stream_constraints={"video": True, "audio": False}, # Audio False hona MUST hai
+    media_stream_constraints={"video": True, "audio": False}, 
     async_processing=True
 )

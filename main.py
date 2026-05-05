@@ -53,7 +53,6 @@ webrtc_streamer(
     video_processor_factory=VideoTransformer,
     rtc_configuration={
         "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
-    }
     },
     # Yeh line add karein: Audio capture band karne ke liye
     media_stream_constraints={"video": True, "audio": False} 

@@ -129,7 +129,7 @@ The training pipeline uses **ImageDataGenerator** for efficient preprocessing an
 - ~14.7 Million Parameters
 
 <p align="center">
-<img src="h1.png" width="900">
+<img src="h2.png" width="900">
 </p>
 
 ---
@@ -142,7 +142,7 @@ The training pipeline uses **ImageDataGenerator** for efficient preprocessing an
 - ~2.2 Million Parameters
 
 <p align="center">
-<img src="h2.png" width="900">
+<img src="h1.png" width="900">
 </p>
 
 ---

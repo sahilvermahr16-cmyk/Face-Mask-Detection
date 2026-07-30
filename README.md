@@ -19,7 +19,7 @@
 ## 📸 Application Preview
 
 <p align="center">
-<img src="home.png" width="900">
+<img src="h3.png" width="900">
 </p>
 
 ---
@@ -128,6 +128,10 @@ The training pipeline uses **ImageDataGenerator** for efficient preprocessing an
 - 45 Epochs
 - ~14.7 Million Parameters
 
+<p align="center">
+<img src="h1.png" width="900">
+</p>
+
 ---
 
 ## MobileNetV2
@@ -136,6 +140,10 @@ The training pipeline uses **ImageDataGenerator** for efficient preprocessing an
 - No pretrained weights
 - 50 Epochs
 - ~2.2 Million Parameters
+
+<p align="center">
+<img src="h2.png" width="900">
+</p>
 
 ---
 
@@ -278,6 +286,6 @@ M.Sc. Mathematics
 
 Indian Institute of Technology Kharagpur
 
-GitHub : https://github.com/yourusername
+GitHub : https://github.com/sahilvermahr16-cmyk
 
-LinkedIn : https://linkedin.com/in/yourprofile
+LinkedIn : https://www.linkedin.com/in/sahil-verma-990001319/

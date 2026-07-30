@@ -166,9 +166,11 @@ The training pipeline uses **ImageDataGenerator** for efficient preprocessing an
 ## Accuracy Comparison
 
 <p align="center">
+<img src="va.png" width="900">
+</p>
 
-<img src="accuracy_comparison.png" width="900">
-
+<p align="center">
+<img src="ma.png" width="900">
 </p>
 
 ---
@@ -176,9 +178,11 @@ The training pipeline uses **ImageDataGenerator** for efficient preprocessing an
 ## Loss Comparison
 
 <p align="center">
+<img src="vl.png" width="900">
+</p>
 
-<img src="loss_comparison.png" width="900">
-
+<p align="center">
+<img src="ml.png" width="900">
 </p>
 
 ---
